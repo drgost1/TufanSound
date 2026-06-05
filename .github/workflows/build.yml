@@ -34,6 +34,7 @@ jobs:
           Copy-Item $exe.FullName dist/TUFAN/TUFAN.exe
           Copy-Item -Recurse bin/x64/* dist/TUFAN/
           Remove-Item dist/TUFAN/*.pdb -ErrorAction SilentlyContinue
+          Remove-Item dist/TUFAN/FxSound.exe -ErrorAction SilentlyContinue  # post-build copies it into bin/x64
 
       - uses: actions/upload-artifact@v4
         with:
