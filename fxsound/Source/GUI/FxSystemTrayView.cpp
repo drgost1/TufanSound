@@ -19,9 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <JuceHeader.h>
 #include "FxSystemTrayView.h"
 
-// {A8E96325-5269-443C-A0D8-0D02562FE553}
+// {60BD19B5-3D5E-4310-9651-76C010035919} — TUFAN's own tray GUID.
+// Windows binds a NIF_GUID tray icon to the exe path that first registered it;
+// reusing upstream FxSound's GUID makes NIM_ADD fail silently for this binary.
 const GUID FxSystemTrayView::trayIconGuid_ =
-{ 0xa8e96325, 0x5269, 0x443c, { 0xa0, 0xd8, 0xd, 0x2, 0x56, 0x2f, 0xe5, 0x53 } };
+{ 0x60bd19b5, 0x3d5e, 0x4310, { 0x96, 0x51, 0x76, 0xc0, 0x10, 0x03, 0x59, 0x19 } };
 
 
 FxSystemTrayView::FxSystemTrayView()
