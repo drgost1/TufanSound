@@ -1,0 +1,41 @@
+name: Build TUFAN
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install JUCE 6.1.6 to C:\JUCE
+        shell: pwsh
+        run: |
+          curl.exe -L -o juce.zip https://github.com/juce-framework/JUCE/releases/download/6.1.6/juce-6.1.6-windows.zip
+          Expand-Archive juce.zip -DestinationPath C:\
+          if (-not (Test-Path 'C:\JUCE\modules\juce_core\juce_core.h')) { throw 'JUCE layout unexpected' }
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Release x64
+        run: msbuild fxsound/Project/FxSound.sln /m /p:Configuration=Release /p:Platform=x64
+
+      - name: Package
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Recurse -Filter FxSound.exe fxsound/Project |
+                 Where-Object { $_.FullName -match 'Release' } | Select-Object -First 1
+          if (-not $exe) { throw 'built exe not found' }
+          New-Item -ItemType Directory dist/TUFAN | Out-Null
+          Copy-Item $exe.FullName dist/TUFAN/TUFAN.exe
+          Copy-Item -Recurse bin/x64/* dist/TUFAN/
+          Remove-Item dist/TUFAN/*.pdb -ErrorAction SilentlyContinue
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TUFAN-win-x64
+          path: dist/TUFAN
