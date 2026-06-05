@@ -357,3 +357,7 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+
+# TUFAN: bin/ holds runtime presets + fxdiag, required by post-build copy and packaging
+!bin/
+!bin/**
