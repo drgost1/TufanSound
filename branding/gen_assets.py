@@ -77,11 +77,11 @@ def save_ico(img, path):
 
 for proj in (PROJ, PROJ_ARM):
     save_ico(full, proj + r"\icon.ico")
-    save_ico(recolor(mask_img, "white"), proj + r"\white_logo.ico")
+    # idle ("white") stays full-color so the brand shows; gray = powered off
+    save_ico(mask_img, proj + r"\white_logo.ico")
     save_ico(mask_img, proj + r"\red_logo.ico")
     save_ico(recolor(mask_img, "gray"), proj + r"\gray_logo.ico")
     save_ico(recolor(mask_img, "blue"), proj + r"\blue_logo.ico")
-save_ico(full, REPO + r"\Installer\Resources\fxsound.ico")
 
 full.resize((256, 256), Image.LANCZOS).save(IMAGES + r"\fxsound_large.png")
 full.resize((32, 32), Image.LANCZOS).save(IMAGES + r"\fxsound.png")
@@ -126,28 +126,32 @@ word_paths, text_end = text_paths("TUFAN", TEXT_X)
 VB_W = round(text_end + 8, 2)
 VB_H = 75.15
 
-def wordmark_svg(color):
+def wordmark_svg(text_color, mark_color):
     d_mark = mark_path(48, 37.5, 40, 34)
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {VB_W} {VB_H}">',
-             f'<path fill="{color}" fill-rule="evenodd" d="{d_mark}"/>']
-    parts += [f'<path fill="{color}" d="{d}"/>' for d in word_paths]
+             f'<path fill="{mark_color}" fill-rule="evenodd" d="{d_mark}"/>']
+    parts += [f'<path fill="{text_color}" d="{d}"/>' for d in word_paths]
     parts.append('</svg>')
     return ''.join(parts)
 
-for name, color in [("logo-white.svg", "#fff"), ("logo-black.svg", "#000"),
-                    ("logo-red.svg", "#e63462"), ("logo-blue.svg", "#23B6EB")]:
+# default logos carry the brand-red diamond mark; highlighted variants go full accent
+for name, text_color, mark_color in [("logo-white.svg", "#fff", "#e63462"),
+                                     ("logo-black.svg", "#000", "#e63462"),
+                                     ("logo-red.svg", "#e63462", "#e63462"),
+                                     ("logo-blue.svg", "#23B6EB", "#23B6EB")]:
     with open(IMAGES + "\\" + name, "w", encoding="utf-8") as f:
-        f.write(wordmark_svg(color))
+        f.write(wordmark_svg(text_color, mark_color))
 
 def bars_svg(color):
     d = mark_path(149.9, 109.6, 105, 95)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 299.83 219.26">'
             f'<path fill="{color}" fill-rule="evenodd" d="{d}"/></svg>')
 
+# IconLogo: brand-red accent in both theme modes
 with open(IMAGES + r"\FxSound White Bars.svg", "w", encoding="utf-8") as f:
-    f.write(bars_svg("#fff"))
+    f.write(bars_svg("#e63462"))
 with open(IMAGES + r"\FxSound Black Bars.svg", "w", encoding="utf-8") as f:
-    f.write(bars_svg("#000"))
+    f.write(bars_svg("#e63462"))
 
 # ------------------------------------------------- legacy raster wordmark PNGs
 def raster_wordmark(w, h, color):

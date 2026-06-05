@@ -33,7 +33,7 @@ namespace BinaryData
     const int            logored_svgSize = 1715;
 
     extern const char*   logowhite_svg;
-    const int            logowhite_svgSize = 1697;
+    const int            logowhite_svgSize = 1700;
 
     extern const char*   maximize_black_svg;
     const int            maximize_black_svgSize = 826;
@@ -72,7 +72,7 @@ namespace BinaryData
     const int            arrow_prev_blue_svgSize = 506;
 
     extern const char*   FxSound_Black_Bars_svg;
-    const int            FxSound_Black_Bars_svgSize = 341;
+    const int            FxSound_Black_Bars_svgSize = 344;
 
     extern const char*   minimize_black_svg;
     const int            minimize_black_svgSize = 951;
@@ -90,7 +90,7 @@ namespace BinaryData
     const int            Slider_Thumb_blue_svgSize = 4894;
 
     extern const char*   logoblack_svg;
-    const int            logoblack_svgSize = 1697;
+    const int            logoblack_svgSize = 1700;
 
     extern const char*   donate_svg;
     const int            donate_svgSize = 431;
@@ -135,13 +135,13 @@ namespace BinaryData
     const int            FxSound_Logo_svgSize = 7254;
 
     extern const char*   FxSound_White_Bars_svg;
-    const int            FxSound_White_Bars_svgSize = 341;
+    const int            FxSound_White_Bars_svgSize = 344;
 
     extern const char*   fxsound_png;
-    const int            fxsound_pngSize = 2546;
+    const int            fxsound_pngSize = 2702;
 
     extern const char*   fxsound_large_png;
-    const int            fxsound_large_pngSize = 69289;
+    const int            fxsound_large_pngSize = 74446;
 
     extern const char*   maximize_svg;
     const int            maximize_svgSize = 826;
