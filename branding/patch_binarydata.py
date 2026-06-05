@@ -33,17 +33,15 @@ for symbol, path in RESOURCES.items():
     assert m, f"pointer def not found for {symbol}"
     n = m.group(1)
 
-    nums = ",".join(str(b) for b in data)
-    wrapped = "\n".join(nums[i:i + 240] for i in range(0, len(nums), 240))
-    # re-wrap on comma boundaries to keep valid syntax
+    # wrap on comma boundaries, KEEPING the comma at end of each wrapped line
     lines, cur = [], ""
-    for tok in nums.split(","):
-        if len(cur) + len(tok) + 1 > 240:
-            lines.append(cur.rstrip(","))
+    for tok in (str(b) for b in data):
+        if cur and len(cur) + len(tok) + 1 > 240:
+            lines.append(cur)
             cur = ""
         cur += tok + ","
-    lines.append(cur.rstrip(","))
-    body = "{ " + "\n".join(lines) + " };"
+    lines.append(cur)
+    body = "{ " + "\n".join(lines).rstrip(",") + " };"
 
     # text resources are string literals, binary ones are numeric arrays -> replace
     # the entire span from array decl to pointer def with a numeric array (always valid)

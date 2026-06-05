@@ -565,7 +565,7 @@ FxSettingsDialog::GeneralSettingsPane::GeneralSettingsPane() :
 	hotkeys_toggle_(TRANS("Disable keyboard shortcuts"))
 {
 	StringArray hotKeySettingsKeys = { FxController::HK_CMD_ON_OFF, FxController::HK_CMD_OPEN_CLOSE, FxController::HK_CMD_NEXT_PRESET, FxController::HK_CMD_PREVIOUS_PRESET, FxController::HK_CMD_NEXT_OUTPUT };
-	StringArray hotkey_names = { "Turn FxSound On/Off", "Open/Close FxSound",
+	StringArray hotkey_names = { "Turn TUFAN On/Off", "Open/Close TUFAN",
 								   "Use Next Preset", "Use Previous Preset", "Change Playback Device"};
 
 	setFocusContainer(true);
