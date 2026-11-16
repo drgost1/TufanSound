@@ -4,7 +4,7 @@
 
 <h1 align="center">TUFAN</h1>
 
-<p align="center"><b>Personal audio-enhancer build for Windows, by Tufan Studio.</b><br>
+<p align="center"><b>Personal audio-enhancer build for Windows, by <a href="https://www.tufanstudio.net">Tufan Studio</a>.</b><br>
 A rebrand of the open-source <a href="https://github.com/fxsound2/fxsound-app">FxSound</a> app — same DSP engine, new identity.</p>
 
 ---
@@ -49,5 +49,5 @@ Or just push to this repo — `.github/workflows/build.yml` does the above on a 
 ## License
 
 GPL-3.0, same as upstream — see [LICENSE](LICENSE).
-Original work © FxSound LLC. Modifications © 2026 Tufan Studio.
+Original work © FxSound LLC. Modifications © 2026 [Tufan Studio](https://www.tufanstudio.net).
 This is a personal-use build; it is not affiliated with or endorsed by FxSound LLC.
